@@ -25,12 +25,12 @@
                                 <th>Title</th>
                             </thead>
                             <tbody>
-                                <?php foreach($libraries as $library): ?>
+                                @foreach($libraries as $library)
                                     <tr>
                                         <td>{{ $library->id }}</td>
                                         <td>{{ $library->name }}</td>
                                     </tr>
-                                <?php endforeach; ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
