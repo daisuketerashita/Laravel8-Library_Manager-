@@ -1,3 +1,7 @@
+@extends('main')
+@include('sidebar')
+@include('footer')
+@section('contents')
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -12,21 +16,22 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">{{ $library->name }}</h4>
+                        <h4 class="title">Borrow book data</h4>
                     </div>
                     <div class="content">
                         <form action="/library/borrow" method="POST">
+                            @csrf
                             <div class="author">
-                                Javascriptパターン 優れたアプリケーションのための作法
+                                {{ $library->name }}
                             </div>
                             <hr>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">return date</label>
-                                <input type="date" class="form-control border-input" placeholder="date">
+                                <input type="date" class="form-control border-input" placeholder="date" name="return_due_date">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success btn-fill btn-wd">borrow!</button>
-                                <input type="hidden" name="id" value="1">
+                                <input type="hidden" name="id" value="{{ $library->id }}">
                             </div>
                             <div class="clearfix"></div>
                         </form>
@@ -36,3 +41,4 @@
         </div>
     </div>
 </div>
+@endsection

@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('/library/index',[LibraryController::class,'index']);
 Route::get('/library/borrow',[LibraryController::class,'borrowingForm']);
+Route::post('/library/borrow',[LibraryController::class,'borrow']);
 
 Auth::routes();
 

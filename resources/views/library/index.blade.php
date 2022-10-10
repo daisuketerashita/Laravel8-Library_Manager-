@@ -23,13 +23,20 @@
                             <thead>
                                 <th>ID</th>
                                 <th>Title</th>
+                                <th></th>
                             </thead>
                             <tbody>
                                 @foreach($libraries as $library)
-                                    <tr>
-                                        <td>{{ $library->id }}</td>
-                                        <td>{{ $library->name }}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $library->id }}</td>
+                                    <td>{{ $library->name }}</td>
+                                    <td>
+                                        <form action="borrow" method="get">
+                                            <input type="submit" value="borrow" />
+                                            <input type="hidden" name="id" value="{{ $library->id }}" />
+                                        </form>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
