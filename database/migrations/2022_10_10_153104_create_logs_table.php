@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLibrariesTable extends Migration
+class CreateLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class CreateLibrariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('libraries', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
+        Schema::create('logs', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('library_id');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-
+            $table->dateTime('rent_date');
+            $table->dateTime('return_date')->nullable();
+            $table->dateTime('return_due_date');
+            
+            $table->foreign('library_id')->references('id')->on('libraries');
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->timestamps();
         });
     }
 
@@ -30,6 +35,6 @@ class CreateLibrariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('libraries');
+        Schema::dropIfExists('logs');
     }
 }
