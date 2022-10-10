@@ -13,4 +13,11 @@ class LibraryController extends Controller
 
         return view('library.index',['libraries' => $libraries]);
     }
+
+    public function borrowingForm(Request $request)
+    {
+        $library = Library::find($request->id);
+
+        return view('library.borrow',['library' => $library]);
+    }
 }
